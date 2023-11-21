@@ -2,9 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/post-with-code/index.html",
-      "/posts/new-post/index.html",
-      "/posts/welcome/index.html"
+      "/posts/classification/index.html",
+      "/posts/clustering/index.html",
+      "/posts/regression/index.html",
+      "/posts/probability-theory/index.html",
+      "/posts/anomaly-outlier-detection/index.html"
     ]
   }
 ]

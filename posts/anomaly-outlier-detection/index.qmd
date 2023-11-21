@@ -1,5 +1,5 @@
 ---
-title: "My Blog2"
+title: "Anomaly/outlier detection"
 author: "Youwei Chen"
 date: "2023-09-12"
 categories: [news, code, analysis]
