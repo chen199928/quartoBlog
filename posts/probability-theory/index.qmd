@@ -1,0 +1,78 @@
+---
+title: "Probability theory and random variables"
+author: "Youwei Chen"
+date: "2023-11-20"
+categories: [machine learning, python, data visualization]
+image: "image.jpg"
+jupyter:
+  kernelspec:
+    name: python3
+    display_name: Python 3
+    language: python
+---
+
+# Email spam detection:
+### 1. Use Case:
+The goal of this blog is to develop a detection system and data visualization for email spams.
+
+```{python}
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+```
+
+```{python}
+#import data
+spam_df = pd.read_csv("emails.csv")
+spam_df['category'] = spam_df['spam'].replace({1: 'spam', 0: 'not spam'})
+```
+
+```{python}
+spam_df
+```
+
+```{python}
+# inspect data and group the columns based on spam
+spam_df.groupby('category').describe()
+```
+
+```{python}
+x_train, x_test, y_train, y_test = train_test_split(spam_df.text, spam_df.spam, test_size=0.25)
+```
+
+```{python}
+x_train.describe()
+```
+
+```{python}
+cv = CountVectorizer()
+x_train_count = cv.fit_transform(x_train.values)
+```
+```{python}
+x_train_count.toarray()
+```
+```{python}
+#train model
+model = MultinomialNB()
+model.fit(x_train_count, y_train)
+```
+
+```{python}
+email_ham = ["hey, wanna meet up for the game?"]
+email_ham_count = cv.transform(email_ham)
+model.predict(email_ham_count)
+```
+
+```{python}
+# pre-test spam
+email_spam = ["reward money click"]
+email_spam_count = cv.transform(email_spam)
+model.predict(email_spam_count)
+```
+
+```{python}
+x_test_count = cv.transform(x_test)
+model.score(x_test_count, y_test)
+```
